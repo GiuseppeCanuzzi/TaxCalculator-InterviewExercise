@@ -9,5 +9,6 @@ public class LibraryTest {
         Library classUnderTest = new Library();
         assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
         assertFalse(false);
+        assertTrue(true);
     }
 }
