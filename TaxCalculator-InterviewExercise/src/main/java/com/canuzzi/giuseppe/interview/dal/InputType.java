@@ -1,4 +1,4 @@
-package com.canuzzi.giuseppe.interview.data.mock;
+package com.canuzzi.giuseppe.interview.dal;
 
 /**
  * These are used with the only purpose of representing

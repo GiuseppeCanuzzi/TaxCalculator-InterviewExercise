@@ -1,8 +1,8 @@
 package com.canuzzi.giuseppe.interview.main;
 
-import com.canuzzi.giuseppe.interview.data.mock.FakeDataSourceFactory;
-import com.canuzzi.giuseppe.interview.data.mock.IDataSource;
-import com.canuzzi.giuseppe.interview.data.mock.InputType;
+import com.canuzzi.giuseppe.interview.dal.FakeDataSourceFactory;
+import com.canuzzi.giuseppe.interview.dal.IDataSource;
+import com.canuzzi.giuseppe.interview.dal.InputType;
 
 public class Launcher {
 
@@ -12,7 +12,9 @@ public class Launcher {
 		//TODO Retrieve goods from cart or other data sources (db)
 		IDataSource dataSource = FakeDataSourceFactory.getCart(InputType.FIRST);
 		
-		//TODO Send goods to our tax calculator
+		//TODO Create a controller for tax calculation, the controller could have a reference to an outputter object (i.e a view, printer)
+		
+		
 		
 		//TODO Print the final receipt
 	}

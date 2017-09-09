@@ -1,4 +1,4 @@
-package com.canuzzi.giuseppe.interview.data.mock;
+package com.canuzzi.giuseppe.interview.dal;
 
 import java.util.List;
 

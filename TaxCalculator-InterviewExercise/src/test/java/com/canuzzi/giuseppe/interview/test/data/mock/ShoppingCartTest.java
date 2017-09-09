@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.canuzzi.giuseppe.interview.data.mock.ShoppingCart;
+import com.canuzzi.giuseppe.interview.dal.ShoppingCart;
 import com.canuzzi.giuseppe.interview.domain.entity.Product;
 import com.google.common.collect.Lists;
 
