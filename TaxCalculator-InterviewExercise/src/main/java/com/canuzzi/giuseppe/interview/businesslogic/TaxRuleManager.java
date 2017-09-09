@@ -7,7 +7,7 @@ import org.assertj.core.util.Preconditions;
 
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
-public class TaxRuleManager {
+public class TaxRuleManager{
 	
 	private List<ITaxRule> taxRuleList;
 	private IRuleEngine<ITaxRule,ITaxable> taxRuleEngine;
@@ -20,7 +20,8 @@ public class TaxRuleManager {
 		this.taxRuleEngine = taxRuleEngine;
 	}
 	
-	public TaxedGood taxGood(Good good) {
+	public TaxedGood getTaxedGood(Good good) {
+		
 		Preconditions.checkNotNull(good);
 		
 		TaxedGood taxedGood = new TaxedGood();

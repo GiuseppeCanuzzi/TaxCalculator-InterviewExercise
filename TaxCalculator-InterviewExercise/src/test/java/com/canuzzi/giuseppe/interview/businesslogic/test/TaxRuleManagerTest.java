@@ -47,7 +47,7 @@ public class TaxRuleManagerTest {
 		
 		//Exercise
 		
-		TaxedGood tg = trm.taxGood(good);
+		TaxedGood tg = trm.getTaxedGood(good);
 		
 		//Verify
 		
