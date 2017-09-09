@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.assertj.core.util.Preconditions;
 
-import com.canuzzi.giuseppe.interview.domain.entity.Product;
+import com.canuzzi.giuseppe.interview.domain.entity.Good;
 import com.google.common.collect.Lists;
 
 /**
@@ -15,9 +15,9 @@ import com.google.common.collect.Lists;
  */
 public class ShoppingCart implements IDataSource {
 	
-	private List<Product> productList;
+	private List<Good> productList;
 	
-	public List<Product> getAllProducts(){
+	public List<Good> getAllProducts(){
 		
 		//TODO return a copy
 		return productList;
@@ -28,20 +28,20 @@ public class ShoppingCart implements IDataSource {
 		this(Lists.newArrayList());
 	}
 	
-	public ShoppingCart(List<Product> productList) {
+	public ShoppingCart(List<Good> productList) {
 		Preconditions.checkNotNull(productList, "Trying to add null products during initialization");
 		
 		this.productList = productList;
 	}
 	
-	public boolean addProduct(Product product) {
+	public boolean addProduct(Good product) {
 		
 		Preconditions.checkNotNull(product,"Trying to add null product");
 		
 		return productList.add(product);
 	}
 	
-	public boolean addProductList(List<Product> products) {
+	public boolean addProductList(List<Good> products) {
 		
 		Preconditions.checkNotNull(products, "Trying to add null products");
 		

@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.canuzzi.giuseppe.interview.dal.ShoppingCart;
-import com.canuzzi.giuseppe.interview.domain.entity.Product;
+import com.canuzzi.giuseppe.interview.domain.entity.Good;
 import com.google.common.collect.Lists;
 
 public class ShoppingCartTest {
@@ -27,17 +27,17 @@ public class ShoppingCartTest {
 	public void getAllProducts_ThreeElementsReturned() {
 		
 		//Setup
-		Product product1 = new Product();
-		Product product2 = new Product();
-		Product product3 = new Product();
+		Good product1 = new Good();
+		Good product2 = new Good();
+		Good product3 = new Good();
 		
-		List<Product> listOfStartingProduct = Lists.newArrayList(product1, product2, product3);
+		List<Good> listOfStartingProduct = Lists.newArrayList(product1, product2, product3);
 		
 		ShoppingCart sc = new ShoppingCart(listOfStartingProduct);
 		
 		
 		//Exercise
-		List<Product> productInsideShoppingCart = sc.getAllProducts();
+		List<Good> productInsideShoppingCart = sc.getAllProducts();
 		
 		//Verify
 		assertThat(productInsideShoppingCart).isNotNull();
@@ -53,7 +53,7 @@ public class ShoppingCartTest {
 
 
 		// Exercise
-		List<Product> productInsideShoppingCart = sc.getAllProducts();
+		List<Good> productInsideShoppingCart = sc.getAllProducts();
 
 		// Verify
 		assertThat(productInsideShoppingCart).isNotNull();
@@ -64,7 +64,7 @@ public class ShoppingCartTest {
 	public void init_NullInputLists_ExceptionRaised() {
 		// Setup
 
-		List<Product> products = null;
+		List<Good> products = null;
 
 		// Verify
 		assertThatThrownBy(
@@ -80,7 +80,7 @@ public class ShoppingCartTest {
 	public void addProduct_OneProductAdded() {
 
 		//Setup
-		Product product1 = new Product();
+		Good product1 = new Good();
 		
 		
 		ShoppingCart sc = new ShoppingCart();
@@ -101,7 +101,7 @@ public class ShoppingCartTest {
 		//Setup
 		
 		ShoppingCart sc = new ShoppingCart();
-		Product p = null;
+		Good p = null;
 		
 		//Verify
 		assertThatThrownBy(
@@ -114,11 +114,11 @@ public class ShoppingCartTest {
 	public void addProductList_ProductListAdded() {
 
 		// Setup
-		Product product1 = new Product();
-		Product product2 = new Product();
-		Product product3 = new Product();
+		Good product1 = new Good();
+		Good product2 = new Good();
+		Good product3 = new Good();
 
-		List<Product> listOfProducts = Lists.newArrayList(product1, product2, product3);
+		List<Good> listOfProducts = Lists.newArrayList(product1, product2, product3);
 
 		ShoppingCart sc = new ShoppingCart();
 
@@ -139,7 +139,7 @@ public class ShoppingCartTest {
 		//Setup
 		
 		ShoppingCart sc = new ShoppingCart();
-		List<Product> products = null;
+		List<Good> products = null;
 		
 		//Verify
 		assertThatThrownBy(

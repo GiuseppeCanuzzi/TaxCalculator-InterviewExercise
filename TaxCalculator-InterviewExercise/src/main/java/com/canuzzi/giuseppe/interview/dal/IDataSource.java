@@ -2,7 +2,7 @@ package com.canuzzi.giuseppe.interview.dal;
 
 import java.util.List;
 
-import com.canuzzi.giuseppe.interview.domain.entity.Product;
+import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
 /**
  * This interface is a simple representation of a data source used to retrieve our data from a repository
@@ -11,6 +11,6 @@ import com.canuzzi.giuseppe.interview.domain.entity.Product;
  */
 public interface IDataSource {
 	
-	public List<Product> getAllProducts();
+	public List<Good> getAllProducts();
 
 }

@@ -1,5 +1,7 @@
 package com.canuzzi.giuseppe.interview.main;
 
+import com.canuzzi.giuseppe.interview.controller.ITaxController;
+import com.canuzzi.giuseppe.interview.controller.TaxCalculatorController;
 import com.canuzzi.giuseppe.interview.dal.FakeDataSourceFactory;
 import com.canuzzi.giuseppe.interview.dal.IDataSource;
 import com.canuzzi.giuseppe.interview.dal.InputType;
@@ -18,12 +20,12 @@ public class Launcher {
 		
 		//TODO Retrieve goods from cart or other data sources (db)
 		IDataSource dataSource = FakeDataSourceFactory.getCart(InputType.FIRST);
-		
-		
+			
 		//TODO Create a controller for tax calculation, the controller could have a reference to an outputter object (i.e a view, printer)
-		
 		//Single point of injection for this tax calculator controller
-		//TODO Adding Guice to manage dependency injection could centralize config even more for future project growth
+		//TODO Could add Guice to manage dependency injection to centralize config even more if config will growth in the future
+		//ITaxController controller = new TaxCalculatorController();
+		
 		
 	}
 

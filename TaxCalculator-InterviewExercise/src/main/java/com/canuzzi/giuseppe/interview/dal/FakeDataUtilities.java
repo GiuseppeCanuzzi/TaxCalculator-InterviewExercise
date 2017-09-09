@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.assertj.core.util.Lists;
 
-import com.canuzzi.giuseppe.interview.domain.entity.Product;
+import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
 /**
  * This class return a list of Product based on input type requested by this exercise
@@ -15,14 +15,14 @@ import com.canuzzi.giuseppe.interview.domain.entity.Product;
  */
 public class FakeDataUtilities {
 	
-	public static List<Product> createProductList(InputType inputType){
+	public static List<Good> createProductList(InputType inputType){
 		
-		List<Product> products = Lists.newArrayList();
+		List<Good> products = Lists.newArrayList();
 		
-		Product p1 = new Product();
-		Product p2 = new Product();
-		Product p3 = new Product();
-		Product p4 = new Product();
+		Good p1 = new Good();
+		Good p2 = new Good();
+		Good p3 = new Good();
+		Good p4 = new Good();
 		
 		switch(inputType) {
 		
