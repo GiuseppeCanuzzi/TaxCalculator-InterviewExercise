@@ -9,10 +9,10 @@ import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
 public class TaxRuleManager {
 	
-	private List<IRule> taxRuleList;
-	private IRuleEngine<IRule,IEvaluable> taxRuleEngine;
+	private List<ITaxRule> taxRuleList;
+	private IRuleEngine<ITaxRule,ITaxable> taxRuleEngine;
 	
-	public TaxRuleManager(IRuleEngine<IRule,IEvaluable> taxRuleEngine) {
+	public TaxRuleManager(IRuleEngine<ITaxRule,ITaxable> taxRuleEngine) {
 		
 		Preconditions.checkNotNull(taxRuleEngine);
 		

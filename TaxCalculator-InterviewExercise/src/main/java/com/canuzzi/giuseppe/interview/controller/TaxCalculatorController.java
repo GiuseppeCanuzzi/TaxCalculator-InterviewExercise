@@ -8,16 +8,21 @@ import org.apache.commons.lang3.NotImplementedException;
 
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleManager;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
+import com.canuzzi.giuseppe.interview.dal.IDataSource;
 
 public class TaxCalculatorController implements ITaxController{
 
+	private final IDataSource model;
+	
 	private TaxRuleManager taxRuleManager;
 	private List<TaxedGood> taxedProductList;
+
 			
-	public TaxCalculatorController(TaxRuleManager taxRuleManager) {
-		// TODO Auto-generated constructor stub
+	public TaxCalculatorController(IDataSource model, TaxRuleManager taxRuleManager) {	
+		this.model = model;
 		this.taxRuleManager = taxRuleManager;
 	}
+	
 	//TODO Tax calculation
 	@Override
 	public void calculateTax() {
