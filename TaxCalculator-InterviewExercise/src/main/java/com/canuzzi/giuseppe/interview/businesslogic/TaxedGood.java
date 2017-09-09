@@ -14,11 +14,7 @@ public class TaxedGood  extends Good implements ITaxable {
 		this.taxedPrice = taxedPrice;
 	}
 	public double getTotalTaxValue() {
-		return totalTaxValue;
+		return (taxedPrice - basePrice);
 	}
-	public void setTotalTaxValue(double totalTaxValue) {
-		this.totalTaxValue = totalTaxValue;
-	}
-	
 	
 }

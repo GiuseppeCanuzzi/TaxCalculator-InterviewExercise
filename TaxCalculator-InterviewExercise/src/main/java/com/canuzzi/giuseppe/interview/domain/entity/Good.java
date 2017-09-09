@@ -2,11 +2,11 @@ package com.canuzzi.giuseppe.interview.domain.entity;
 
 public class Good {
 	
-	private boolean isImport;
-	private String description;
-	private String name;
-	private double basePrice;
-	private Category category;
+	protected boolean isImport;
+	protected String description;
+	protected String name;
+	protected double basePrice;
+	protected Category category;
 	
 	public boolean isImport() {
 		return isImport;

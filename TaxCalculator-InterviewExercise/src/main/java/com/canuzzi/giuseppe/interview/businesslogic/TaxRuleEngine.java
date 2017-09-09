@@ -7,7 +7,7 @@ public class TaxRuleEngine implements IRuleEngine<ITaxRule, ITaxable> {
 	@Override
 	public ITaxable applyRules(List<ITaxRule> rules, ITaxable evaluable) {
 		// TODO Auto-generated method stub
-		return null;
+		return new TaxedGood();
 	}
 
 }

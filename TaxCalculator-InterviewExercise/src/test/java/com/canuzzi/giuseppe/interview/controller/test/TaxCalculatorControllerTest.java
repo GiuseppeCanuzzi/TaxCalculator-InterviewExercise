@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.canuzzi.giuseppe.interview.common.test.GoodTestCreator;
 import com.canuzzi.giuseppe.interview.domain.entity.Category;
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
@@ -26,7 +27,7 @@ public class TaxCalculatorControllerTest {
 	public void calculateTax_OnBooksNotImported_NoTaxApplied() {
 		
 		//Setup
-		Good product = getProductOfBookCategory();
+		Good product = GoodTestCreator.getNonImportedBook(14.99);
 		
 		
 		//Exercise
@@ -36,18 +37,5 @@ public class TaxCalculatorControllerTest {
 		
 	}
 	
-	private Good getProductOfBookCategory() {
-		
-		Good product = new Good();
-		
-		product.setBasePrice(14.99);
-		product.setCategory(Category.BOOK);
-		product.setImport(false);
-		product.setName("book");
-		product.setDescription("some description");
-		
-		return product;
-		
-	}
 
 }
