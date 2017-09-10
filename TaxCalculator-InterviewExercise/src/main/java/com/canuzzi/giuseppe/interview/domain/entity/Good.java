@@ -35,7 +35,8 @@ public class Good {
 		return basePrice;
 	}
 	public void setBasePrice(BigDecimal basePrice) {
-		this.basePrice = basePrice;
+		BigDecimal exactBasePriceRepresentation =new BigDecimal(String.valueOf(basePrice.doubleValue()));
+		this.basePrice = exactBasePriceRepresentation;
 	}
 	public Category getCategory() {
 		return category;

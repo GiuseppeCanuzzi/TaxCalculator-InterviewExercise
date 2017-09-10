@@ -27,7 +27,7 @@ public class TaxRuleManagerTest {
 	}
 
 	@Test
-	public void taxGood_TaxFreeGood_NoTaxApplied() {
+	public void taxGood_TaxFreeGood_NoTaxApplied() throws Exception {
 		//Setup
 		Good good = GoodCreator.getNonImportedBook(14.99);
 		

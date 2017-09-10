@@ -38,9 +38,9 @@ public class TaxImportRule implements ITaxRule<TaxedGood> {
 
 			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(importTaxRate);
 
-			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(100));
+			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(String.valueOf(100)));
 
-			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue, new BigDecimal("0.05"),
+			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue, new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)),
 					RoundingMode.UP);
 
 			taxableGood.setTaxPercentageApplied(newPercentageToApply);

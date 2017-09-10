@@ -53,8 +53,9 @@ public class BaseTaxRuleTest {
 		//Verify
 		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(16.49);
 		
-		
 	}
+	
+
 	
 	@Test
 	public void apply_GenericGood_PercentageAppliedIncreased() throws TaxCalculationException {

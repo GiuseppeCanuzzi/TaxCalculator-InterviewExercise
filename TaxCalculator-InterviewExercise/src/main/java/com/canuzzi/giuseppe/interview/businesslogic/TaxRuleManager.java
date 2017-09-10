@@ -21,7 +21,7 @@ public class TaxRuleManager{
 	}
 	
 	
-	public TaxedGood getTaxedGood(Good good) {
+	public TaxedGood getTaxedGood(Good good) throws Exception {
 		
 		Preconditions.checkNotNull(good);
 		

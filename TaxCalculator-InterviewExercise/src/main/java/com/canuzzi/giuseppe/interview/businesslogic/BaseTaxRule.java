@@ -44,7 +44,7 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 																.divide(new BigDecimal(100));
 			
 			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue,
-																	 new BigDecimal(String.valueOf(RoundValue.)), 
+																	 new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)), 
 																	 RoundingMode.UP);
 			
 			taxableGood.setTaxPercentageApplied(newPercentageToApply);

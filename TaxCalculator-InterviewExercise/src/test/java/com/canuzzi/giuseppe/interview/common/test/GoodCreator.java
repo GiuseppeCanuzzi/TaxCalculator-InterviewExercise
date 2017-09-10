@@ -12,7 +12,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.BOOK);
 		good.setImport(false);
 		good.setName("book");
@@ -25,7 +26,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.FOOD);
 		good.setImport(true);
 		good.setName("food");
@@ -38,7 +40,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.FOOD);
 		good.setImport(true);
 		good.setName("food");
@@ -51,7 +54,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(false);
 		good.setName("medical");
@@ -64,7 +68,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.OTHER);
 		good.setImport(false);
 		good.setName("parfume");
@@ -77,7 +82,8 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.OTHER);
 		good.setImport(true);
 		good.setName("parfume");
@@ -90,7 +96,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.OTHER);
 		good.setImport(false);
 		good.setName("parfume");
@@ -103,7 +110,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(false);
 		good.setName("medical");
@@ -116,7 +124,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(false);
 		good.setName("medical");
@@ -129,7 +138,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.BOOK);
 		good.setImport(false);
 		good.setName("book");
@@ -142,7 +152,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.OTHER);
 		good.setImport(true);
 		good.setName("parfume");
@@ -155,7 +166,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(true);
 		good.setName("medical");
@@ -168,7 +180,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(true);
 		good.setName("medical");
@@ -181,7 +194,8 @@ public class GoodCreator {
 
 		TaxedGood good = new TaxedGood();
 
-		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		
+		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.BOOK);
 		good.setImport(true);
 		good.setName("book");
