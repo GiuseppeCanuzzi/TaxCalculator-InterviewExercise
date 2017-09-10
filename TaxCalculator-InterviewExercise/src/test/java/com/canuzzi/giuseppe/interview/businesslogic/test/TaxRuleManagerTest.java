@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleManager;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
-import com.canuzzi.giuseppe.interview.common.test.GoodTestCreator;
+import com.canuzzi.giuseppe.interview.common.test.GoodCreator;
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
 public class TaxRuleManagerTest {
@@ -29,7 +29,7 @@ public class TaxRuleManagerTest {
 	@Test
 	public void taxGood_TaxFreeGood_NoTaxApplied() {
 		//Setup
-		Good good = GoodTestCreator.getNonImportedBook(14.99);
+		Good good = GoodCreator.getNonImportedBook(14.99);
 		
 		TaxedGood taxedGoodResult = new TaxedGood();
 		
