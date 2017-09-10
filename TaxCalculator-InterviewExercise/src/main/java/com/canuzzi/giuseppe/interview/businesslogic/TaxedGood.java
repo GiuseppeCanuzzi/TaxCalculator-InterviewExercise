@@ -20,7 +20,7 @@ public class TaxedGood  extends Good implements ITaxable {
 	}
 	
 	public void setTaxedPrice(BigDecimal taxedPrice) {
-		BigDecimal exactBasePriceRepresentation =new BigDecimal(String.valueOf(taxedPrice.doubleValue()));
+		BigDecimal exactBasePriceRepresentation = BigDecimal.valueOf(taxedPrice.doubleValue());
 		this.taxedPrice = exactBasePriceRepresentation;
 	}
 	
@@ -36,7 +36,7 @@ public class TaxedGood  extends Good implements ITaxable {
 	}
 	
 	public void setTaxPercentageApplied(BigDecimal taxPercentageApplied) {
-		BigDecimal exactBasePriceRepresentation =new BigDecimal(String.valueOf(taxPercentageApplied.doubleValue()));
+		BigDecimal exactBasePriceRepresentation = BigDecimal.valueOf(taxPercentageApplied.doubleValue());
 		this.taxPercentageApplied = exactBasePriceRepresentation;
 	}
 	
