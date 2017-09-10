@@ -2,16 +2,12 @@ package com.canuzzi.giuseppe.interview.businesslogic;
 
 import java.util.List;
 
-import org.assertj.core.util.Preconditions;
-
-public class TaxRuleEngine implements IRuleEngine<ITaxRule, ITaxable> {
+public class TaxRuleEngine implements IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> {
 
 	@Override
-	public ITaxable applyRules(List<ITaxRule> rules, ITaxable evaluable) {
-		Preconditions.checkNotNull(rules, "Invalid rules provided");
-		Preconditions.checkNotNull(evaluable, "Invalid value to evaluate");
+	public void applyRules(List< ITaxRule<TaxedGood> > rules, TaxedGood evaluable) {
 		// TODO Auto-generated method stub
-		return new TaxedGood();
+		
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.canuzzi.giuseppe.interview.businesslogic;
 
-public interface IRule {
+public interface IRule<T extends IEvaluable> {
 	
-	public void apply(IEvaluable ev);
+	public void apply(T acceptedType);
 
 }

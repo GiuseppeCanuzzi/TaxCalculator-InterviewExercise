@@ -16,7 +16,7 @@ public class TaxedGood  extends Good implements ITaxable {
 	}
 	
 	public double getTotalTaxValue() {
-		return (taxedPrice - basePrice);
+		return taxedPrice - basePrice;
 	}
 	
 	public double getTaxPercentageApplied() {

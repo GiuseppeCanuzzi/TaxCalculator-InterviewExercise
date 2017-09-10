@@ -2,9 +2,9 @@ package com.canuzzi.giuseppe.interview.main;
 
 import com.canuzzi.giuseppe.interview.businesslogic.IRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.ITaxRule;
-import com.canuzzi.giuseppe.interview.businesslogic.ITaxable;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleManager;
+import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
 import com.canuzzi.giuseppe.interview.controller.ITaxController;
 import com.canuzzi.giuseppe.interview.controller.TaxCalculatorController;
 import com.canuzzi.giuseppe.interview.dal.FakeDataSourceFactory;
@@ -31,7 +31,7 @@ public class Launcher {
 		
 		//TODO Setup manager to inject inside controller.
 		//This manager will be responsible to manage the business logic to apply taxation
-		IRuleEngine<ITaxRule, ITaxable> taxRuleEngine = new TaxRuleEngine();
+		IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine = new TaxRuleEngine();
 		TaxRuleManager taxRuleManager = new TaxRuleManager(taxRuleEngine);	
 		
 		//TODO Create a controller for tax calculation, the controller could have a reference to an outputter object (i.e a view, printer)

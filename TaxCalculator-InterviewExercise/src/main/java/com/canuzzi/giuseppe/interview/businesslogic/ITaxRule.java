@@ -1,5 +1,5 @@
 package com.canuzzi.giuseppe.interview.businesslogic;
 
-public interface ITaxRule extends IRule {
-
+public interface ITaxRule<T extends ITaxable> extends IRule<T> {
+	
 }
