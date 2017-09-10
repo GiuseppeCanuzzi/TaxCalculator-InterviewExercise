@@ -1,5 +1,7 @@
 package com.canuzzi.giuseppe.interview.main;
 
+import java.util.List;
+
 import com.canuzzi.giuseppe.interview.businesslogic.IRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.ITaxRule;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
@@ -26,11 +28,15 @@ public class Launcher {
 		
 		//TODO Create a receiptPrinter as our view
 		IView receiptPrinterView = new ReceiptPrinterView();
+		
 		//TODO Retrieve goods from cart or other data sources (db)
 		IDataSource dataSource = FakeDataSourceFactory.getCart(InputType.FIRST);
 		
 		//TODO Setup manager to inject inside controller.
-		//This manager will be responsible to manage the business logic to apply taxation
+		//This manager will be responsible to manage the business logic to apply taxation rules.
+		//The rules used to calculate tax are statically returned for the purpose of the exercise
+		//but they could be created with real tax value retrieved from a db for example.
+		//List<ITaxRule<TaxedGood>> rulesList = RulesCreator.getTaxRule();
 		IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine = new TaxRuleEngine();
 		TaxRuleManager taxRuleManager = new TaxRuleManager(taxRuleEngine);	
 		
