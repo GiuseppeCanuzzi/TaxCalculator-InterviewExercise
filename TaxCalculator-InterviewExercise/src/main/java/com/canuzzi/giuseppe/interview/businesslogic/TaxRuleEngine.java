@@ -15,7 +15,7 @@ public class TaxRuleEngine implements IRuleEngine<ITaxRule<TaxedGood>, TaxedGood
 		for (ITaxRule<TaxedGood> rule : rules) {
 			rule.apply(evaluable);
 		}
-		
+	
 	}
 
 }

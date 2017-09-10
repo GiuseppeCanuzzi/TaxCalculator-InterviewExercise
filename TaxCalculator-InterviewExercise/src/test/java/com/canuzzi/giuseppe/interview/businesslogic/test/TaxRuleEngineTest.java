@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.assertj.core.util.Lists;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import com.canuzzi.giuseppe.interview.businesslogic.BaseTaxRule;
 import com.canuzzi.giuseppe.interview.businesslogic.IRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.ITaxRule;
+import com.canuzzi.giuseppe.interview.businesslogic.TaxCalculationException;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxImportRule;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
@@ -56,6 +58,7 @@ public class TaxRuleEngineTest {
 		assertThat(good.getTotalTaxValue().doubleValue()).isEqualTo(7.15);
 	}
 	
+	
 	@Test
 	public void testApplyRules_CheckFloatingPointBehaviour_ValueCorrectlyConverted() throws Exception {
 		//Setup
@@ -80,6 +83,26 @@ public class TaxRuleEngineTest {
 		assertThat(good.getBasePrice().doubleValue()).isEqualTo(27.99);
 		assertThat(good.getTaxPercentageApplied().doubleValue()).isEqualTo(15);
 		assertThat(good.getTotalTaxValue().doubleValue()).isEqualTo(4.2);
+	}
+	
+	@Test
+	public void testApplyRules_EmptyListOfRules_NoRulesApplied() throws Exception {
+		// Setup
+
+		List<ITaxRule<TaxedGood>> rules = Lists.newArrayList();
+
+		TaxedGood good = GoodCreator.getImportedTaxedFood(11.25);
+
+		// Exercise
+
+		taxRuleEngine.applyRules(rules, good);
+
+		// Verify
+
+		assertThat(good.getTaxedPrice().doubleValue()).isEqualTo(0);
+		assertThat(good.getBasePrice().doubleValue()).isEqualTo(11.25);
+		assertThat(good.getTaxPercentageApplied().doubleValue()).isEqualTo(0);
+		assertThat(good.getTotalTaxValue().doubleValue()).isEqualTo(0);
 	}
 
 	@Test
@@ -228,8 +251,27 @@ public class TaxRuleEngineTest {
 															   .hasMessage("Cannot apply rules if no evaluable subject is specified");															
 
 	}
+	
+	@Test
+	public void testApplyRules_ThrowsException_WhenSubjectEvaluatedHasNegativeValue() {
+		// Setup
+		TaxImportRule importRule = new TaxImportRule();
+		BaseTaxRule baseTaxRule = new BaseTaxRule();
 
-	
-	
+		List<ITaxRule<TaxedGood>> rules = new ArrayList<>();
+
+		rules.add(importRule);
+		rules.add(baseTaxRule);
+
+		TaxedGood good = GoodCreator.getImportedGeneralTaxedGood(-0.99);
+		
+		
+
+		// Exercise
+		// Verify
+		assertThatThrownBy(() -> taxRuleEngine.applyRules(rules, good)).isInstanceOf(TaxCalculationException.class)
+																	  .hasMessageContaining("Negative base price is invalid for tax calculation");
+	}
+
 
 }
