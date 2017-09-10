@@ -89,6 +89,7 @@ public class BaseTaxRuleTest {
 	
 	}
 	
+
 	@Test
 	public void apply_BookGood_NoTaxApplied() throws TaxCalculationException {
 		// Setup
