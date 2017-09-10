@@ -1,29 +1,40 @@
 package com.canuzzi.giuseppe.interview.businesslogic;
 
+import java.math.BigDecimal;
+
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
 public class TaxedGood  extends Good implements ITaxable {
 
-	private double taxedPrice;
-	private double taxPercentageApplied;
+	private BigDecimal taxedPrice;
+	private BigDecimal taxPercentageApplied;
 	
-	public double getTaxedPrice() {
+	public TaxedGood() {
+		super();
+		taxedPrice = BigDecimal.ZERO;
+		taxPercentageApplied = BigDecimal.ZERO;
+	}
+	
+	public BigDecimal getTaxedPrice() {
 		return taxedPrice;
 	}
 	
-	public void setTaxedPrice(double taxedPrice) {
+	public void setTaxedPrice(BigDecimal taxedPrice) {
 		this.taxedPrice = taxedPrice;
 	}
 	
-	public double getTotalTaxValue() {
-		return taxedPrice - basePrice;
+	public BigDecimal getTotalTaxValue() {
+		if(BigDecimal.ZERO.compareTo(taxedPrice) == 0) {
+			return BigDecimal.ZERO;
+		}
+		return taxedPrice.subtract(basePrice);
 	}
 	
-	public double getTaxPercentageApplied() {
+	public BigDecimal getTaxPercentageApplied() {
 		return taxPercentageApplied;
 	}
 	
-	public void setTaxPercentageApplied(double taxPercentageApplied) {
+	public void setTaxPercentageApplied(BigDecimal taxPercentageApplied) {
 		this.taxPercentageApplied = taxPercentageApplied;
 	}
 	

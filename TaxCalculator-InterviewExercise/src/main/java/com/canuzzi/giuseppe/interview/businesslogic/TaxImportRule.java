@@ -6,40 +6,50 @@ import java.math.RoundingMode;
 import org.assertj.core.util.Preconditions;
 
 public class TaxImportRule implements ITaxRule<TaxedGood> {
+
+	//TODO Refactor on common code between rules 
 	
-	//TODO Retrieve its value from DB to inject inside the rule
-	private final static BigDecimal importTaxRate = new BigDecimal(5).setScale(2);
+	// TODO Retrieve its value from DB to inject inside the rule
+	private final static BigDecimal importTaxRate = new BigDecimal(5);
 
 	@Override
-	public void apply(TaxedGood taxableGood) {
-		
-		Preconditions.checkNotNull(taxableGood);
-		
-		if(taxableGood.getBasePrice() == 0) {
+	public void apply(TaxedGood taxableGood) throws TaxCalculationException {
+
+		//TODO Check null input
+		Preconditions.checkNotNull(taxableGood, "Cannot apply tax to a null good");
+
+		BigDecimal basePrice = taxableGood.getBasePrice();
+
+		//TODO Check operand sign
+		if (basePrice.signum() == -1) {
+			throw new TaxCalculationException(
+					String.format("Negative base price is invalid for tax calculation of %s : %s",
+							taxableGood.getName(), taxableGood.getDescription()));
+		}
+
+		if (taxableGood.getBasePrice().signum() == 0) {
 			return;
 		}
-		
-		if(taxableGood.isImport()) {
-			//BigDecimal for precision
-			
-			//TODO Refactor common code for rules
-			
-			BigDecimal previousTaxPercentageApplied = new BigDecimal(taxableGood.getTaxPercentageApplied());
-			
+
+		//TODO Tax logic for import
+		if (taxableGood.isImport()) {
+
+			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();
+
 			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(importTaxRate);
-			
-			BigDecimal newTaxedPrice = new BigDecimal(taxableGood.getBasePrice()).multiply(newPercentageToApply)
-																.divide(new BigDecimal(100));
-			
-			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(newTaxedPrice,
-																	 new BigDecimal("0.05"), 
-																	 RoundingMode.UP);
-			
-			taxableGood.setTaxPercentageApplied(newPercentageToApply.doubleValue());
-			
-			taxableGood.setTaxedPrice(roundedTaxValue.doubleValue());
+
+			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(100));
+
+			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue, new BigDecimal("0.05"),
+					RoundingMode.UP);
+
+			taxableGood.setTaxPercentageApplied(newPercentageToApply);
+
+			BigDecimal taxedPrice = roundedTaxValue.add(basePrice);
+
+			taxableGood.setTaxedPrice(taxedPrice);
 		}
-		
+
 	}
 
 }

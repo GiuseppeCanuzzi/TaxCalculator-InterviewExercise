@@ -1,5 +1,8 @@
 package com.canuzzi.giuseppe.interview.common.test;
 
+import java.math.BigDecimal;
+
+import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
 import com.canuzzi.giuseppe.interview.domain.entity.Category;
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 
@@ -9,7 +12,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.BOOK);
 		good.setImport(false);
 		good.setName("book");
@@ -22,7 +25,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.FOOD);
 		good.setImport(true);
 		good.setName("food");
@@ -35,7 +38,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.FOOD);
 		good.setImport(true);
 		good.setName("food");
@@ -48,7 +51,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.MEDICAL);
 		good.setImport(false);
 		good.setName("medical");
@@ -61,7 +64,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.OTHER);
 		good.setImport(false);
 		good.setName("parfume");
@@ -74,7 +77,7 @@ public class GoodCreator {
 
 		Good good = new Good();
 
-		good.setBasePrice(basePrice);
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
 		good.setCategory(Category.OTHER);
 		good.setImport(true);
 		good.setName("parfume");
@@ -82,5 +85,110 @@ public class GoodCreator {
 
 		return good;
 	}
+	
+	public static TaxedGood getNonImportedGeneralTaxedGood(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.OTHER);
+		good.setImport(false);
+		good.setName("parfume");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getNonImportedTaxedMedical(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.MEDICAL);
+		good.setImport(false);
+		good.setName("medical");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getNonImportedTaxedFood(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.MEDICAL);
+		good.setImport(false);
+		good.setName("medical");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getNonImportedTaxedBook(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.BOOK);
+		good.setImport(false);
+		good.setName("book");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getImportedGeneralTaxedGood(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.OTHER);
+		good.setImport(true);
+		good.setName("parfume");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getImportedTaxedMedical(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.MEDICAL);
+		good.setImport(true);
+		good.setName("medical");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getImportedTaxedFood(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.MEDICAL);
+		good.setImport(true);
+		good.setName("medical");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
+	public static TaxedGood getImportedTaxedBook(double basePrice) {
+
+		TaxedGood good = new TaxedGood();
+
+		good.setBasePrice(new BigDecimal(String.valueOf(basePrice)));
+		good.setCategory(Category.BOOK);
+		good.setImport(true);
+		good.setName("book");
+		good.setDescription("some description");
+
+		return good;
+	}
+	
 
 }

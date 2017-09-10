@@ -38,7 +38,7 @@ public class TaxRuleManagerTest {
 		taxedGoodResult.setDescription(good.getDescription());
 		taxedGoodResult.setImport(good.isImport());
 		taxedGoodResult.setName(good.getName());
-		taxedGoodResult.setTaxedPrice(good.getBasePrice());
+		//taxedGoodResult.setTaxedPrice(good.getBasePrice());
 
 		TaxRuleEngine taxRuleEngine = Mockito.mock(TaxRuleEngine.class);
 		//Mockito.dowhen(taxRuleEngine.applyRules(Lists.newArrayList(), Mockito.any(TaxedGood.class)));

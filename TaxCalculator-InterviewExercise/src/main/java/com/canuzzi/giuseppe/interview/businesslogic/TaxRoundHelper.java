@@ -10,9 +10,9 @@ public class TaxRoundHelper {
 		if (increment.signum() == 0) {
 			return value;
 		} else {
-			BigDecimal divided = value.divide(increment, 2, roundingMode);
+			BigDecimal divided = value.divide(increment, 0, roundingMode);
 			BigDecimal result = divided.multiply(increment);
-			return result.setScale(2);
+			return result;
 		}
 	}
 

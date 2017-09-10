@@ -1,12 +1,17 @@
 package com.canuzzi.giuseppe.interview.domain.entity;
 
+import java.math.BigDecimal;
+
 public class Good {
 	
 	protected boolean isImport;
 	protected String description;
 	protected String name;
-	protected double basePrice;
+	protected BigDecimal basePrice;
 	protected Category category;
+	
+	public Good() {
+	}
 	
 	public boolean isImport() {
 		return isImport;
@@ -26,10 +31,10 @@ public class Good {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getBasePrice() {
+	public BigDecimal getBasePrice() {
 		return basePrice;
 	}
-	public void setBasePrice(double basePrice) {
+	public void setBasePrice(BigDecimal basePrice) {
 		this.basePrice = basePrice;
 	}
 	public Category getCategory() {

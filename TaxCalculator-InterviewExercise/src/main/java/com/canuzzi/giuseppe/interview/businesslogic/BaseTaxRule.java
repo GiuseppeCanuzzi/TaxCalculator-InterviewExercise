@@ -13,31 +13,45 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 	private final static BigDecimal baseTaxRate = new BigDecimal(10);
 		
 	@Override
-	public void apply(TaxedGood taxableGood) {
+	public void apply(TaxedGood taxableGood) throws TaxCalculationException {
 		
-		Preconditions.checkNotNull(taxableGood);
+		Preconditions.checkNotNull(taxableGood, "Cannot apply tax to a null good");
+		
+		BigDecimal basePrice = taxableGood.getBasePrice();
+		
+		if(basePrice.signum() == -1) {
+			throw new TaxCalculationException(String.format(
+														"Negative base price is invalid for tax calculation of %s : %s", 
+														taxableGood.getName(),
+														taxableGood.getDescription())
+											);
+		}
 
-		if (taxableGood.getBasePrice() == 0) {
+		if (taxableGood.getBasePrice().signum() == 0) {
 			return;
 		}
 		
+		
 		if(Category.OTHER.equals(taxableGood.getCategory())) {
+			
 			//BigDecimal for precision
 			
-			BigDecimal previousTaxPercentageApplied = new BigDecimal(taxableGood.getTaxPercentageApplied());
+			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();
 			
 			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(baseTaxRate);
-			
-			BigDecimal newTaxedPrice = new BigDecimal(taxableGood.getBasePrice()).multiply(newPercentageToApply)
+					
+			BigDecimal taxValue = basePrice.multiply(newPercentageToApply)
 																.divide(new BigDecimal(100));
 			
-			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(newTaxedPrice,
-																	 new BigDecimal("0.05"), 
+			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue,
+																	 new BigDecimal(String.valueOf(RoundValue.)), 
 																	 RoundingMode.UP);
 			
-			taxableGood.setTaxPercentageApplied(newPercentageToApply.doubleValue());
+			taxableGood.setTaxPercentageApplied(newPercentageToApply);
 			
-			taxableGood.setTaxedPrice(roundedTaxValue.doubleValue());
+			BigDecimal taxedPrice = roundedTaxValue.add(basePrice);
+			
+			taxableGood.setTaxedPrice(taxedPrice);
 		}
 
 	}
