@@ -1,8 +1,10 @@
 package com.canuzzi.giuseppe.interview.businesslogic.test;
 
-import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.assertj.core.util.Lists;
 import org.junit.After;
@@ -10,6 +12,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.canuzzi.giuseppe.interview.businesslogic.BaseTaxRule;
+import com.canuzzi.giuseppe.interview.businesslogic.IRuleEngine;
+import com.canuzzi.giuseppe.interview.businesslogic.ITaxRule;
+import com.canuzzi.giuseppe.interview.businesslogic.TaxImportRule;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleManager;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
@@ -27,21 +33,19 @@ public class TaxRuleManagerTest {
 	}
 
 	@Test
-	public void taxGood_TaxFreeGood_NoTaxApplied() throws Exception {
+	public void taxGood_ImportBookToTax_TaxedBookCreated() throws Exception {
 		//Setup
 		Good good = GoodCreator.getNonImportedBook(14.99);
-		
-		TaxedGood taxedGoodResult = new TaxedGood();
-		
-		taxedGoodResult.setBasePrice(good.getBasePrice());
-		taxedGoodResult.setCategory(good.getCategory());
-		taxedGoodResult.setDescription(good.getDescription());
-		taxedGoodResult.setImport(good.isImport());
-		taxedGoodResult.setName(good.getName());
-		//taxedGoodResult.setTaxedPrice(good.getBasePrice());
 
-		TaxRuleEngine taxRuleEngine = Mockito.mock(TaxRuleEngine.class);
-		//Mockito.dowhen(taxRuleEngine.applyRules(Lists.newArrayList(), Mockito.any(TaxedGood.class)));
+		IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine = new TaxRuleEngine();
+		
+		TaxImportRule importRule = new TaxImportRule();
+		BaseTaxRule baseTaxRule = new BaseTaxRule();
+		
+		List<ITaxRule<TaxedGood>> rules = new ArrayList<>();
+		
+		rules.add(importRule);
+		rules.add(baseTaxRule);
 		
 		TaxRuleManager trm = new TaxRuleManager(taxRuleEngine);
 		

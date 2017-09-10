@@ -6,6 +6,7 @@ import org.assertj.core.util.Lists;
 import org.assertj.core.util.Preconditions;
 
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
+import com.google.common.collect.ImmutableList;
 
 public class TaxRuleManager{
 	
@@ -20,7 +21,7 @@ public class TaxRuleManager{
 		this.taxRuleEngine = taxRuleEngine;
 	}
 	
-	
+
 	public TaxedGood getTaxedGood(Good good) throws Exception {
 		
 		Preconditions.checkNotNull(good);
@@ -37,6 +38,11 @@ public class TaxRuleManager{
 		
 		return taxedGood;
 		
+	}
+	
+	
+	public void setRules(List<ITaxRule<TaxedGood>> listsOfNewRules) {
+		this.taxRuleList = ImmutableList.copyOf(listsOfNewRules);
 	}
 
 }
