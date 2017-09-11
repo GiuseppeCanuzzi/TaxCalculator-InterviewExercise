@@ -4,17 +4,13 @@ package com.canuzzi.giuseppe.interview.controller;
 
 import java.util.List;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.assertj.core.util.Lists;
 import org.assertj.core.util.Preconditions;
 
-import com.canuzzi.giuseppe.interview.businesslogic.TaxCalculationException;
-import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleException;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleManager;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
 import com.canuzzi.giuseppe.interview.dal.IDataSource;
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
-import com.canuzzi.giuseppe.interview.view.IView;
 import com.canuzzi.giuseppe.interview.view.ReceiptPrinterView;
 
 public class TaxCalculatorController implements ITaxController{
@@ -40,6 +36,8 @@ public class TaxCalculatorController implements ITaxController{
 		List<Good> goodsToTax = this.model.getAllProducts();
 		
 		List<TaxedGood> taxedProductList = getTaxedProducts(goodsToTax);
+		
+		updateUI(taxedProductList);
 
 		
 	}
@@ -47,7 +45,8 @@ public class TaxCalculatorController implements ITaxController{
 	
 	private void updateUI(List<TaxedGood> taxedProductList) {
 		
-		//this.taxView.updateUI();
+		//TODO Can map the taxed object to View type object container instead of pass directly
+		this.taxView.printReceipt(taxedProductList);
 		
 	}
 	

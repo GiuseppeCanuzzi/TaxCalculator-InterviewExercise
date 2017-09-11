@@ -14,7 +14,6 @@ import com.canuzzi.giuseppe.interview.controller.TaxCalculatorController;
 import com.canuzzi.giuseppe.interview.dal.FakeDataSourceFactory;
 import com.canuzzi.giuseppe.interview.dal.IDataSource;
 import com.canuzzi.giuseppe.interview.dal.InputType;
-import com.canuzzi.giuseppe.interview.view.IView;
 import com.canuzzi.giuseppe.interview.view.ReceiptPrinterView;
 import com.google.common.collect.Lists;
 
@@ -32,9 +31,6 @@ public class Launcher {
 		//TODO Create a receiptPrinter as our view
 		ReceiptPrinterView receiptPrinterView = new ReceiptPrinterView();
 		
-		//TODO Retrieve goods from cart or other data sources (db)
-		IDataSource dataSource = FakeDataSourceFactory.getCart(InputType.FIRST);
-		
 		//TODO Setup manager to inject inside controller.
 		//This manager will be responsible to manage the business logic to apply taxation rules.
 		//The rules used to calculate tax are created and injected for the purpose of the exercise
@@ -43,23 +39,30 @@ public class Launcher {
 		
 		List<ITaxRule<TaxedGood>> rulesList = Lists.newArrayList(new BaseTaxRule(), new TaxImportRule());
 		IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine = new TaxRuleEngine();
-		TaxRuleManager taxRuleManager = new TaxRuleManager(taxRuleEngine, rulesList);	
+		TaxRuleManager taxRuleManager = new TaxRuleManager(taxRuleEngine, rulesList);
 		
-		//TODO Create a controller for tax calculation, the controller could have a reference to an outputter object (i.e a view, printer)
-		//Single point of injection for this tax calculator controller
-		//TODO Could add Guice to manage dependency injection to centralize config even more if config will growth in the future
-		ITaxController controller = new TaxCalculatorController(dataSource, receiptPrinterView, taxRuleManager);
 		
-		try {
-			controller.calculateTax();
+		for (InputType userInput : InputType.values()) {
+			
+			//TODO Retrieve goods from cart or other data sources (db)
+			IDataSource dataSource = FakeDataSourceFactory.getCart(userInput);
 
-		}catch(Exception ex) {
-			//Redirect to an error page
+			//TODO Create a controller for tax calculation, the controller could have a reference to an outputter object (i.e a view, printer)
+			//Single point of injection for this tax calculator controller
+			//TODO Could add Guice to manage dependency injection to centralize config even more if config will growth in the future
+			
+			ITaxController controller = new TaxCalculatorController(dataSource, receiptPrinterView, taxRuleManager);
+			
+			try {
+				controller.calculateTax();
+
+			}catch(Exception ex) {
+				//Log exception
+				//Redirect to an error page
+			}
+			
 		}
-		
-		
-		
-		
+
 	}
 
 }
