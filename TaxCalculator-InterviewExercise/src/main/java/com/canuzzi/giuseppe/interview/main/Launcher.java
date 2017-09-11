@@ -30,7 +30,7 @@ public class Launcher {
 	public static void main(String[] args) throws Exception {
 		
 		//TODO Create a receiptPrinter as our view
-		IView receiptPrinterView = new ReceiptPrinterView();
+		ReceiptPrinterView receiptPrinterView = new ReceiptPrinterView();
 		
 		//TODO Retrieve goods from cart or other data sources (db)
 		IDataSource dataSource = FakeDataSourceFactory.getCart(InputType.FIRST);
@@ -52,7 +52,7 @@ public class Launcher {
 		
 		try {
 			controller.calculateTax();
-			controller.updateUI();
+
 		}catch(Exception ex) {
 			//Redirect to an error page
 		}

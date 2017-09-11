@@ -15,14 +15,15 @@ import com.canuzzi.giuseppe.interview.businesslogic.TaxedGood;
 import com.canuzzi.giuseppe.interview.dal.IDataSource;
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
 import com.canuzzi.giuseppe.interview.view.IView;
+import com.canuzzi.giuseppe.interview.view.ReceiptPrinterView;
 
 public class TaxCalculatorController implements ITaxController{
 
 	private final IDataSource model;
 	private TaxRuleManager taxRuleManager;
-	private IView taxView;
+	private ReceiptPrinterView taxView;
 			
-	public TaxCalculatorController(IDataSource model, IView taxView, TaxRuleManager taxRuleManager) {
+	public TaxCalculatorController(IDataSource model, ReceiptPrinterView taxView, TaxRuleManager taxRuleManager) {
 		
 		Preconditions.checkNotNull(model);
 		Preconditions.checkNotNull(taxRuleManager);
@@ -40,12 +41,13 @@ public class TaxCalculatorController implements ITaxController{
 		
 		List<TaxedGood> taxedProductList = getTaxedProducts(goodsToTax);
 
-		updateUI();
 		
 	}
 
 	
-	private void updateUI() {
+	private void updateUI(List<TaxedGood> taxedProductList) {
+		
+		//this.taxView.updateUI();
 		
 	}
 	
@@ -69,6 +71,12 @@ public class TaxCalculatorController implements ITaxController{
 		}
 		
 		return taxedProductList;
+	}
+
+	@Override
+	public void updateUI() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 

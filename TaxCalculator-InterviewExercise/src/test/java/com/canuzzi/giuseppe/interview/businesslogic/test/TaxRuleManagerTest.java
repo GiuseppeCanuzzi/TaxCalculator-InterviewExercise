@@ -14,7 +14,6 @@ import org.junit.Test;
 import com.canuzzi.giuseppe.interview.businesslogic.BaseTaxRule;
 import com.canuzzi.giuseppe.interview.businesslogic.IRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.ITaxRule;
-import com.canuzzi.giuseppe.interview.businesslogic.TaxCalculationException;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxImportRule;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleEngine;
 import com.canuzzi.giuseppe.interview.businesslogic.TaxRuleException;
