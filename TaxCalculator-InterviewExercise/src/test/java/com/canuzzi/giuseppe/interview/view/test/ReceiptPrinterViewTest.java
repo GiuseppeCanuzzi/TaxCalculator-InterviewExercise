@@ -97,6 +97,9 @@ public class ReceiptPrinterViewTest {
 		
 	}
 	
+
+	
+	
 	@Test
 	public void printReceipt_FormatWhenTaxedPriceIsSetWithoutBigDecimalStringConstructor_PrecisionMaintained() {
 		// Setup
