@@ -1,24 +1,27 @@
 package com.canuzzi.giuseppe.interview.businesslogic;
 
+
+
 import java.util.List;
 
-import org.assertj.core.util.Lists;
 import org.assertj.core.util.Preconditions;
 
 import com.canuzzi.giuseppe.interview.domain.entity.Good;
-import com.google.common.collect.ImmutableList;
+
 
 public class TaxRuleManager{
 	
 	private List<ITaxRule<TaxedGood>> taxRuleList;
 	private IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine;
 	
-	public TaxRuleManager(IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine) {
+	public TaxRuleManager(IRuleEngine<ITaxRule<TaxedGood>, TaxedGood> taxRuleEngine, List<ITaxRule<TaxedGood>> rules) {
 		
-		Preconditions.checkNotNull(taxRuleEngine);
+		Preconditions.checkNotNull(taxRuleEngine, "No valid engine provided for tax calculation");
+		Preconditions.checkNotNull(rules, "No valid rules provided for tax calculation");
 		
-		this.taxRuleList = Lists.newArrayList();
+		this.taxRuleList = rules; //FluentIterable.from(rules).filter(Predicates.notNull()).toList();
 		this.taxRuleEngine = taxRuleEngine;
+		
 	}
 	
 
@@ -34,15 +37,13 @@ public class TaxRuleManager{
 		taxedGood.setImport(good.isImport());
 		taxedGood.setName(good.getName());
 		
+		//Log start applying rules for given element type with name and description
 		taxRuleEngine.applyRules(taxRuleList, taxedGood);
-		
+		//Log end applying rules
+
 		return taxedGood;
 		
 	}
 	
-	
-	public void setRules(List<ITaxRule<TaxedGood>> listsOfNewRules) {
-		this.taxRuleList = ImmutableList.copyOf(listsOfNewRules);
-	}
 
 }

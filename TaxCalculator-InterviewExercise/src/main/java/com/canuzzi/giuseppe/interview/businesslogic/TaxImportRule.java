@@ -13,6 +13,14 @@ public class TaxImportRule implements ITaxRule<TaxedGood> {
 	private final static BigDecimal importTaxRate = new BigDecimal(5);
 
 	@Override
+	public String getDescription() {
+		
+		//TODO move description inside a const
+		return String.format("This rule is used to calculate tax on all imported goods");
+		
+	}
+	
+	@Override
 	public void apply(TaxedGood taxableGood) throws TaxCalculationException {
 
 		//TODO Check null input

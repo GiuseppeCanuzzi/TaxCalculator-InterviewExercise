@@ -21,6 +21,19 @@ public class GoodCreator {
 
 		return good;
 	}
+	
+	public static Good getImportedBook(double basePrice) {
+
+		Good good = new Good();
+	
+		good.setBasePrice(new BigDecimal(basePrice));
+		good.setCategory(Category.BOOK);
+		good.setImport(true);
+		good.setName("book");
+		good.setDescription("some description");
+
+		return good;
+	}
 
 	public static Good getImportedFood(double basePrice) {
 
@@ -43,7 +56,7 @@ public class GoodCreator {
 		
 		good.setBasePrice(new BigDecimal(basePrice));
 		good.setCategory(Category.FOOD);
-		good.setImport(true);
+		good.setImport(false);
 		good.setName("food");
 		good.setDescription("some description");
 

@@ -11,6 +11,15 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 
 	//TODO Retrieve its value from DB to inject inside the rule
 	private final static BigDecimal baseTaxRate = new BigDecimal(10);
+	
+	@Override
+	public String getDescription() {
+		
+		//TODO move description inside a const
+		return String.format("This rule is used to calculate tax on all goods except food, medical and book");
+		
+	}
+	
 		
 	@Override
 	public void apply(TaxedGood taxableGood) throws TaxCalculationException {
@@ -28,6 +37,7 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 		}
 
 		if (taxableGood.getBasePrice().signum() == 0) {
+			//log that the the object has a base cost of zero
 			return;
 		}
 		
@@ -35,6 +45,8 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 		if(Category.OTHER.equals(taxableGood.getCategory())) {
 			
 			//BigDecimal for precision
+			
+			//Log that rule is being applied because the good evaluated is of generic type
 			
 			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();
 			
@@ -55,5 +67,6 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 		}
 
 	}
+
 
 }
