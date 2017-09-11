@@ -39,24 +39,26 @@ public class TaxImportRule implements ITaxRule<TaxedGood> {
 			return;
 		}
 
+		BigDecimal currentTaxedPrice = taxableGood.getTaxedPrice();
+		
+		if(currentTaxedPrice.signum() == 0) {
+			taxableGood.setTaxedPrice(new BigDecimal(basePrice.doubleValue()));
+		}
+		
 		//TODO Tax logic for import
 		if (taxableGood.isImport()) {
-
+			
 			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();
-
 			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(importTaxRate);
-
-			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(String.valueOf(100)));
-
-			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue, new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)),
-					RoundingMode.UP);
-
 			taxableGood.setTaxPercentageApplied(newPercentageToApply);
+			
+			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(String.valueOf(100)));
+			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue, new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)),RoundingMode.UP);
+			BigDecimal finalTaxedPrice = roundedTaxValue.add(basePrice);		
+			taxableGood.setTaxedPrice(finalTaxedPrice);
 
-			BigDecimal taxedPrice = roundedTaxValue.add(basePrice);
-
-			taxableGood.setTaxedPrice(taxedPrice);
 		}
+		
 
 	}
 

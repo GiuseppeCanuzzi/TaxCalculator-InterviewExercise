@@ -91,7 +91,7 @@ public class TaxRuleManagerTest {
 		//Verify
 		
 		assertThat(tg).isNotNull();
-		assertThat(tg.getTaxedPrice().doubleValue()).isEqualTo(0);
+		assertThat(tg.getTaxedPrice().doubleValue()).isEqualTo(0.85);
 		assertThat(tg.getTotalTaxValue().doubleValue()).isEqualTo(0);
 		assertThat(tg.getTaxPercentageApplied().doubleValue()).isEqualTo(0);
 		assertThat(tg.getBasePrice().doubleValue()).isEqualTo(Double.valueOf("0.85"));

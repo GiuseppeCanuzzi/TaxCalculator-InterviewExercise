@@ -102,7 +102,7 @@ public class BaseTaxRuleTest {
 		// Verify
 
 		assertThat(taxedGood.getTotalTaxValue().doubleValue()).isEqualTo(0);
-		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(0);
+		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(12.49);
 		assertThat(taxedGood.getTaxPercentageApplied().doubleValue()).isEqualTo(0);
 	}
 	
@@ -118,7 +118,7 @@ public class BaseTaxRuleTest {
 		// Verify
 
 		assertThat(taxedGood.getTotalTaxValue().doubleValue()).isEqualTo(0);
-		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(0);
+		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(9.75);
 		assertThat(taxedGood.getTaxPercentageApplied().doubleValue()).isEqualTo(0);
 	}
 	
@@ -126,7 +126,7 @@ public class BaseTaxRuleTest {
 	public void apply_FoodGood_NoTaxApplied() throws TaxCalculationException {
 		// Setup
 		BaseTaxRule baseTaxRule = new BaseTaxRule();
-		TaxedGood taxedGood = GoodCreator.getNonImportedTaxedMedical(0.85);
+		TaxedGood taxedGood = GoodCreator.getNonImportedTaxedFood(0.85);
 
 		// Exercise
 		baseTaxRule.apply(taxedGood);
@@ -134,7 +134,7 @@ public class BaseTaxRuleTest {
 		// Verify
 
 		assertThat(taxedGood.getTotalTaxValue().doubleValue()).isEqualTo(0);
-		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(0);
+		assertThat(taxedGood.getTaxedPrice().doubleValue()).isEqualTo(0.85);
 		assertThat(taxedGood.getTaxPercentageApplied().doubleValue()).isEqualTo(0);
 	}
 	

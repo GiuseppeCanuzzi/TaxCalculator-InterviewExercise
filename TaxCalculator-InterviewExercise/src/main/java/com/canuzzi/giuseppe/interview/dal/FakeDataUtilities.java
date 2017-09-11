@@ -72,7 +72,7 @@ public class FakeDataUtilities {
 
 			p2.setBasePrice(new BigDecimal(18.99));
 			p2.setCategory(Category.OTHER);
-			p2.setName("bootle of parfume");
+			p2.setName("bottle of parfume");
 			p2.setImport(false);
 			p2.setDescription("Dior");
 

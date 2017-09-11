@@ -36,35 +36,31 @@ public class BaseTaxRule implements ITaxRule<TaxedGood> {
 											);
 		}
 
-		if (taxableGood.getBasePrice().signum() == 0) {
+		if (basePrice.signum() == 0) {
 			//log that the the object has a base cost of zero
 			return;
 		}
 		
+		BigDecimal currentTaxedPrice = taxableGood.getTaxedPrice();
+		
+		if(currentTaxedPrice.signum() == 0) {
+			taxableGood.setTaxedPrice(new BigDecimal(basePrice.doubleValue()));
+		}
 		
 		if(Category.OTHER.equals(taxableGood.getCategory())) {
 			
 			//BigDecimal for precision
-			
 			//Log that rule is being applied because the good evaluated is of generic type
+			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();	
+			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(baseTaxRate);	
+			taxableGood.setTaxPercentageApplied(newPercentageToApply);	
 			
-			BigDecimal previousTaxPercentageApplied = taxableGood.getTaxPercentageApplied();
-			
-			BigDecimal newPercentageToApply = previousTaxPercentageApplied.add(baseTaxRate);
-					
-			BigDecimal taxValue = basePrice.multiply(newPercentageToApply)
-																.divide(new BigDecimal(100));
-			
-			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue,
-																	 new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)), 
-																	 RoundingMode.UP);
-			
-			taxableGood.setTaxPercentageApplied(newPercentageToApply);
-			
-			BigDecimal taxedPrice = roundedTaxValue.add(basePrice);
-			
-			taxableGood.setTaxedPrice(taxedPrice);
-		}
+			BigDecimal taxValue = basePrice.multiply(newPercentageToApply).divide(new BigDecimal(100));
+			BigDecimal roundedTaxValue = TaxRoundHelper.roundUpNearest(taxValue,new BigDecimal(String.valueOf(RoundValue.NEAREST_TO_5_CENTS)), RoundingMode.UP);		
+			BigDecimal finalTaxedPrice = roundedTaxValue.add(basePrice);  
+			taxableGood.setTaxedPrice(finalTaxedPrice);
+	
+		}	
 
 	}
 
