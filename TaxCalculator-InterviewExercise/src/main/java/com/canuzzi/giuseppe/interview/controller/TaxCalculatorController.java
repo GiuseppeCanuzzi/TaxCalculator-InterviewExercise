@@ -21,8 +21,9 @@ public class TaxCalculatorController implements ITaxController{
 			
 	public TaxCalculatorController(IDataSource model, ReceiptPrinterView taxView, TaxRuleManager taxRuleManager) {
 		
-		Preconditions.checkNotNull(model);
-		Preconditions.checkNotNull(taxRuleManager);
+		Preconditions.checkNotNull(model,"Invalid model");
+		Preconditions.checkNotNull(taxView,"Invalid view");
+		Preconditions.checkNotNull(taxRuleManager,"Invalid rule manager");
 		
 		this.model = model;
 		this.taxRuleManager = taxRuleManager;
